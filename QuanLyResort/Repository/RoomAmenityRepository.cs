@@ -21,11 +21,11 @@ namespace QuanLyResort.Repository
             var response = new List<AmenityResponseDTO>();
 
             using var connection = _connectionFactory.CreateConnection();
-            using var command = new SqlCommand("spFetchRoomAmenitiesByRoomTypeID", connection)
+            using var command = new SqlCommand("spFetchRoomAmenitiesByRoomID", connection)
             {
                 CommandType = CommandType.StoredProcedure
             };
-            command.Parameters.AddWithValue("@RoomTypeID", roomTypeId);
+            command.Parameters.AddWithValue("@RoomID", roomTypeId);
 
             await connection.OpenAsync();
             using var reader = await command.ExecuteReaderAsync();
@@ -34,7 +34,7 @@ namespace QuanLyResort.Repository
                 response.Add(new AmenityResponseDTO
                 {
                     AmenityID = reader.GetInt32(reader.GetOrdinal("AmenityID")),
-                    Name = reader.GetString(reader.GetOrdinal("Name")),
+                    AmenityName = reader.GetString(reader.GetOrdinal("AmenityName")),
                     Description = reader.GetString(reader.GetOrdinal("Description")),
                     IsActive = reader.GetBoolean(reader.GetOrdinal("IsActive"))
                 });
@@ -49,7 +49,7 @@ namespace QuanLyResort.Repository
             var response = new List<FetchRoomAmenityResponseDTO>();
 
             using var connection = _connectionFactory.CreateConnection();
-            using var command = new SqlCommand("spFetchRoomTypesByAmenityID", connection)
+            using var command = new SqlCommand("spFetchRoomsByAmenityID", connection)
             {
                 CommandType = CommandType.StoredProcedure
             };
@@ -61,8 +61,8 @@ namespace QuanLyResort.Repository
             {
                 response.Add(new FetchRoomAmenityResponseDTO
                 {
-                    RoomTypeID = reader.GetInt32(reader.GetOrdinal("RoomTypeID")),
-                    TypeName = reader.GetString(reader.GetOrdinal("TypeName")),
+                    RoomID = reader.GetInt32(reader.GetOrdinal("RoomID")),
+                    RoomNumber = reader.GetString(reader.GetOrdinal("RoomNumber")),
                     Description = reader.GetString(reader.GetOrdinal("Description")),
                     AccessibilityFeatures = reader.GetString(reader.GetOrdinal("AccessibilityFeatures")),
                     IsActive = reader.GetBoolean(reader.GetOrdinal("IsActive"))
@@ -80,7 +80,7 @@ namespace QuanLyResort.Repository
             {
                 CommandType = CommandType.StoredProcedure
             };
-            command.Parameters.AddWithValue("@RoomTypeID", input.RoomTypeID);
+            command.Parameters.AddWithValue("@RoomID", input.RoomID);
             command.Parameters.AddWithValue("@AmenityID", input.AmenityID);
             var statusParam = new SqlParameter("@Status", SqlDbType.Bit) { Direction = ParameterDirection.Output };
             var messageParam = new SqlParameter("@Message", SqlDbType.NVarChar, 255) { Direction = ParameterDirection.Output };
@@ -105,7 +105,7 @@ namespace QuanLyResort.Repository
             {
                 CommandType = CommandType.StoredProcedure
             };
-            command.Parameters.AddWithValue("@RoomTypeID", input.RoomTypeID);
+            command.Parameters.AddWithValue("@RoomID", input.RoomID);
             command.Parameters.AddWithValue("@AmenityID", input.AmenityID);
 
             var statusParam = new SqlParameter("@Status", SqlDbType.Bit) { Direction = ParameterDirection.Output };
@@ -131,7 +131,7 @@ namespace QuanLyResort.Repository
             {
                 CommandType = CommandType.StoredProcedure
             };
-            command.Parameters.AddWithValue("@RoomTypeID", input.RoomTypeID);
+            command.Parameters.AddWithValue("@RoomID", input.RoomID);
             command.Parameters.Add(CreateAmenityIDTableParameter(input.AmenityIDs));
 
             var statusParam = new SqlParameter("@Status", SqlDbType.Bit) { Direction = ParameterDirection.Output };
@@ -157,7 +157,7 @@ namespace QuanLyResort.Repository
             {
                 CommandType = CommandType.StoredProcedure
             };
-            command.Parameters.AddWithValue("@RoomTypeID", input.RoomTypeID);
+            command.Parameters.AddWithValue("@RoomTypeID", input.RoomID);
             command.Parameters.Add(CreateAmenityIDTableParameter(input.AmenityIDs));
 
             var statusParam = new SqlParameter("@Status", SqlDbType.Bit) { Direction = ParameterDirection.Output };

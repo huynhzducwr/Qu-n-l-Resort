@@ -1,4 +1,6 @@
-﻿namespace QuanLyResort.DTOs.CancellationDTOs
+﻿using System.Runtime.CompilerServices;
+
+namespace QuanLyResort.DTOs.CancellationDTOs
 {
     public class AllCancellationsResponseDTO
     {
@@ -15,5 +17,6 @@
         public string CancellationType { get; set; }
         public DateTime RequestedOn { get; set; }
         public string Status { get; set; }
+        public string CancellationReason { get; set; }
     }
 }

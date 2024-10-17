@@ -33,11 +33,7 @@ namespace QuanLyResort.DTOs.BookingDTOs
         public string AgeGroup { get; set; }
         public string Address { get; set; }
 
-        [Required]
-        public int CountryId { get; set; }
 
-        [Required]
-        public int StateId { get; set; }
 
         [Required]
         public int RoomID { get; set; }  // RoomID associated with each guest

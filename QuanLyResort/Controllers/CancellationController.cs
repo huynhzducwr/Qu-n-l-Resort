@@ -1,8 +1,9 @@
-﻿using QuanLyResort.DTOs.CancellationDTOs;
+﻿using Microsoft.AspNetCore.Mvc;
 using QuanLyResort.Models;
 using QuanLyResort.Repository;
-using Microsoft.AspNetCore.Mvc;
 using System.Net;
+using QuanLyResort.DTOs.CancellationDTOs;
+
 
 namespace QuanLyResort.Controllers
 {
@@ -211,4 +212,4 @@ namespace QuanLyResort.Controllers
             }
         }
     }
-} 
+}

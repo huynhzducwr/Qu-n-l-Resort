@@ -1,4 +1,4 @@
-﻿namespace QuanLyResort.DTOs.PaymentDTOs
+﻿namespace QuanLyResort.DTOs.BookingDTOs
 {
     public class ProcessPaymentResponseDTO
     {

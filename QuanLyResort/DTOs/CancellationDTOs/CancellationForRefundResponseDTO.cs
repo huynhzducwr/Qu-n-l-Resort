@@ -6,6 +6,7 @@
         public string Message { get; set; }
         public List<CancellationForRefundDTO> CancellationsToRefund { get; set; }
     }
+
     public class CancellationForRefundDTO
     {
         public int CancellationRequestID { get; set; }

@@ -2,7 +2,6 @@
 using Microsoft.Data.SqlClient;
 using QuanLyResort.Connection;
 using QuanLyResort.DTOs.BookingDTOs;
-using QuanLyResort.DTOs.PaymentDTOs;
 using System.Data;
 
 namespace QuanLyResort.Repository
@@ -85,7 +84,7 @@ namespace QuanLyResort.Repository
                 command.Parameters.AddWithValue("@UserID", reservation.UserID);
                 command.Parameters.AddWithValue("@CheckInDate", reservation.CheckInDate);
                 command.Parameters.AddWithValue("@CheckOutDate", reservation.CheckOutDate);
-                command.Parameters.AddWithValue("@CreatedBy", reservation.UserID);
+
 
                 var table = new DataTable();
                 table.Columns.Add("RoomID", typeof(int));
@@ -117,7 +116,7 @@ namespace QuanLyResort.Repository
             AddGuestsToReservationResponseDTO addGuestsToReservationResponseDTO = new AddGuestsToReservationResponseDTO();
             try
             {
-                using var connection = _connectionFactory.CreateConnection();
+                using var connection    = _connectionFactory.CreateConnection();
                 using var command = new SqlCommand("spAddGuestsToReservation", connection);
                 command.CommandType = CommandType.StoredProcedure;
 
@@ -131,14 +130,13 @@ namespace QuanLyResort.Repository
                 table.Columns.Add("Phone", typeof(string));
                 table.Columns.Add("AgeGroup ", typeof(string));
                 table.Columns.Add("Address", typeof(string));
-                table.Columns.Add("CountryId", typeof(int));
-                table.Columns.Add("StateId", typeof(int));
+
                 table.Columns.Add("RoomID", typeof(int));
 
                 details.GuestDetails.ForEach(guest =>
                 {
                     table.Rows.Add(guest.FirstName, guest.LastName, guest.Email, guest.Phone,
-                        guest.AgeGroup, guest.Address, guest.CountryId, guest.StateId, guest.RoomID);
+                        guest.AgeGroup, guest.Address,   guest.RoomID);
                 });
                 command.Parameters.AddWithValue("@GuestDetails", table).SqlDbType = SqlDbType.Structured;
 

@@ -27,10 +27,14 @@ namespace QuanLyResort.DTOs.RoomDTOs
         [StringLength(50, ErrorMessage = "View type must be up to 50 characters long.")]
         public string ViewType { get; set; }
 
+
         [Required]
         [RegularExpression("(Available|Under Maintenance|Occupied)", ErrorMessage = "Status must be 'Available', 'Under Maintenance', or 'Occupied'.")]
         public string Status { get; set; }
 
+
+        [Required]
+        public int People { get; set; }
         [Required]
         public bool IsActive { get; set; }
     }

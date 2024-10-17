@@ -10,6 +10,9 @@ namespace QuanLyResort.DTOs.UserDTOs
         [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string Email { get; set; }
         [Required(ErrorMessage = "Password is Required")]
+
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public string Password { get; set; }
     }
 }

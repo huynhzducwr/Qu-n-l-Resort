@@ -31,6 +31,7 @@ namespace QuanLyResort.Repository
             command.Parameters.AddWithValue("@BedType", request.BedType);
             command.Parameters.AddWithValue("@ViewType", request.ViewType);
             command.Parameters.AddWithValue("@Status", request.Status);
+            command.Parameters.AddWithValue("@People", request.People);
             command.Parameters.AddWithValue("@IsActive", request.IsActive);
             command.Parameters.AddWithValue("@CreatedBy", "System");
             command.Parameters.Add("@NewRoomID", SqlDbType.Int).Direction = ParameterDirection.Output;
@@ -73,6 +74,7 @@ namespace QuanLyResort.Repository
             command.Parameters.AddWithValue("@BedType", request.BedType);
             command.Parameters.AddWithValue("@ViewType", request.ViewType);
             command.Parameters.AddWithValue("@Status", request.Status);
+            command.Parameters.AddWithValue("@People", request.People);
             command.Parameters.AddWithValue("@IsActive", request.IsActive);
             command.Parameters.AddWithValue("@ModifiedBy", "System");
             command.Parameters.Add("@StatusCode", SqlDbType.Int).Direction = ParameterDirection.Output;
@@ -149,6 +151,7 @@ namespace QuanLyResort.Repository
                         BedType = reader.GetString("BedType"),
                         ViewType = reader.GetString("ViewType"),
                         Status = reader.GetString("Status"),
+                        People = reader.GetInt32("People"),
                         IsActive = reader.GetBoolean("IsActive")
                     };
                 }
@@ -197,6 +200,7 @@ namespace QuanLyResort.Repository
                         Price = reader.GetDecimal("Price"),
                         BedType = reader.GetString("BedType"),
                         ViewType = reader.GetString("ViewType"),
+                         People = reader.GetInt32("People"),
                         Status = reader.GetString("Status"),
                         IsActive = reader.GetBoolean("IsActive")
                     });

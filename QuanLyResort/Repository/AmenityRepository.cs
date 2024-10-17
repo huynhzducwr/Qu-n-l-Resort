@@ -37,7 +37,7 @@ namespace QuanLyResort.Repository
                     amenities.Add(new AmenityDetailsDTO
                     {
                         AmenityID = reader.GetInt32(reader.GetOrdinal("AmenityID")),
-                        Name = reader.GetString(reader.GetOrdinal("Name")),
+                        AmenityName = reader.GetString(reader.GetOrdinal("AmenityName")),
                         Description = reader.GetString(reader.GetOrdinal("Description")),
                         IsActive = reader.GetBoolean(reader.GetOrdinal("IsActive"))
                     });
@@ -69,7 +69,7 @@ namespace QuanLyResort.Repository
                 return new AmenityDetailsDTO
                 {
                     AmenityID = reader.GetInt32(reader.GetOrdinal("AmenityID")),
-                    Name = reader.GetString(reader.GetOrdinal("Name")),
+                    AmenityName = reader.GetString(reader.GetOrdinal("AmenityName")),
                     Description = reader.GetString(reader.GetOrdinal("Description")),
                     IsActive = reader.GetBoolean(reader.GetOrdinal("IsActive"))
                 };
@@ -86,7 +86,7 @@ namespace QuanLyResort.Repository
             using var connection = _connectionFactory.CreateConnection();
             using var command = new SqlCommand("spAddAmenity", connection);
             command.CommandType = CommandType.StoredProcedure;
-            command.Parameters.AddWithValue("@Name", amenity.Name);
+            command.Parameters.AddWithValue("@AmenityName", amenity.AmenityName);
             command.Parameters.AddWithValue("@Description", amenity.Description);
             command.Parameters.AddWithValue("@CreatedBy", "System");
             command.Parameters.Add("@AmenityID", SqlDbType.Int).Direction = ParameterDirection.Output;
@@ -129,10 +129,9 @@ namespace QuanLyResort.Repository
             using var command = new SqlCommand("spUpdateAmenity", connection);
             command.CommandType = CommandType.StoredProcedure;
             command.Parameters.AddWithValue("@AmenityID", amenity.AmenityID);
-            command.Parameters.AddWithValue("@Name", amenity.Name);
+            command.Parameters.AddWithValue("@AmenityName", amenity.AmenityName);
             command.Parameters.AddWithValue("@Description", amenity.Description);
             command.Parameters.AddWithValue("@IsActive", amenity.IsActive);
-            command.Parameters.AddWithValue("@ModifiedBy", "System"); // Assume modified by system or pass a real user
             command.Parameters.Add("@Status", SqlDbType.Bit).Direction = ParameterDirection.Output;
             command.Parameters.Add("@Message", SqlDbType.NVarChar, 255).Direction = ParameterDirection.Output;
 
@@ -178,13 +177,13 @@ namespace QuanLyResort.Repository
             using var command = new SqlCommand("spBulkInsertAmenities", connection);
             command.CommandType = CommandType.StoredProcedure;
             var amenitiesTable = new DataTable();
-            amenitiesTable.Columns.Add("Name", typeof(string));
+            amenitiesTable.Columns.Add("AmenityName", typeof(string));
             amenitiesTable.Columns.Add("Description", typeof(string));
             amenitiesTable.Columns.Add("CreatedBy", typeof(string));
 
             foreach (var amenity in amenities)
             {
-                amenitiesTable.Rows.Add(amenity.Name, amenity.Description, "System");
+                amenitiesTable.Rows.Add(amenity.AmenityName, amenity.Description, "System");
             }
 
             var param = command.Parameters.AddWithValue("@Amenities", amenitiesTable);
@@ -209,13 +208,13 @@ namespace QuanLyResort.Repository
             command.CommandType = CommandType.StoredProcedure;
             var amenitiesTable = new DataTable();
             amenitiesTable.Columns.Add("AmenityID", typeof(int));
-            amenitiesTable.Columns.Add("Name", typeof(string));
+            amenitiesTable.Columns.Add("AmenityName", typeof(string));
             amenitiesTable.Columns.Add("Description", typeof(string));
             amenitiesTable.Columns.Add("IsActive", typeof(bool));
 
             foreach (var amenity in amenities)
             {
-                amenitiesTable.Rows.Add(amenity.AmenityID, amenity.Name, amenity.Description, amenity.IsActive);
+                amenitiesTable.Rows.Add(amenity.AmenityID, amenity.AmenityName, amenity.Description, amenity.IsActive);
             }
 
             var param = command.Parameters.AddWithValue("@AmenityUpdates", amenitiesTable);

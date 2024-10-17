@@ -142,7 +142,6 @@ namespace QuanLyResort.Repository
             command.Parameters.Add(new SqlParameter("@TypeName", request.TypeName));
             command.Parameters.Add(new SqlParameter("@AccessibilityFeatures", request.AccessibilityFeatures));
             command.Parameters.Add(new SqlParameter("@Description", request.Description));
-            command.Parameters.Add(new SqlParameter("@ModifiedBy", "System"));
             var statusCode = new SqlParameter("@StatusCode", SqlDbType.Int)
             {
                 Direction = ParameterDirection.Output

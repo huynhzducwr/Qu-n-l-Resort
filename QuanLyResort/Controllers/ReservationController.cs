@@ -1,7 +1,6 @@
 ﻿
 using Microsoft.AspNetCore.Mvc;
 using QuanLyResort.DTOs.BookingDTOs;
-using QuanLyResort.DTOs.PaymentDTOs;
 using QuanLyResort.Models;
 using QuanLyResort.Repository;
 using System.Net;

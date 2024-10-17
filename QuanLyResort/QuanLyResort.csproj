@@ -8,20 +8,48 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BCrypt.Net" Version="0.1.0" />
-    <PackageReference Include="BCrypt.Net-Core" Version="1.6.0" />
+    <Content Include="Controllers\CancellationController.cs" />
+    <Content Include="Controllers\ReservationController.cs" />
+    <Content Include="DTOs\BookingDTOs\AddGuestsToReservationDTO.cs" />
+    <Content Include="DTOs\BookingDTOs\AddGuestsToReservationResponseDTO.cs" />
+    <Content Include="DTOs\BookingDTOs\CreateReservationDTO.cs" />
+    <Content Include="DTOs\BookingDTOs\CreateReservationResponseDTO.cs" />
+    <Content Include="DTOs\BookingDTOs\ProcessPaymentDTO.cs" />
+    <Content Include="DTOs\BookingDTOs\ProcessPaymentResponseDTO.cs" />
+    <Content Include="DTOs\BookingDTOs\RoomCostsDTO.cs" />
+    <Content Include="DTOs\BookingDTOs\RoomCostsResponseDTO.cs" />
+    <Content Include="DTOs\BookingDTOs\UpdatePaymentStatusDTO.cs" />
+    <Content Include="DTOs\BookingDTOs\UpdatePaymentStatusResponseDTO.cs" />
+    <Content Include="DTOs\CancellationDTOs\AllCancellationRequest.cs" />
+    <Content Include="DTOs\CancellationDTOs\AllCancellationsResponseDTO.cs" />
+    <Content Include="DTOs\CancellationDTOs\CalculateCancellationChargesRequestDTO.cs" />
+    <Content Include="DTOs\CancellationDTOs\CalculateCancellationChargesResponseDTO.cs" />
+    <Content Include="DTOs\CancellationDTOs\CancellationForRefundResponseDTO.cs" />
+    <Content Include="DTOs\CancellationDTOs\CancellationPoliciesResponseDTO.cs" />
+    <Content Include="DTOs\CancellationDTOs\CreateCancellationRequestDTO.cs" />
+    <Content Include="DTOs\CancellationDTOs\CreateCancellationResponseDTO.cs" />
+    <Content Include="DTOs\CancellationDTOs\ProcessRefundRequestDTO.cs" />
+    <Content Include="DTOs\CancellationDTOs\ProcessRefundResponseDTO.cs" />
+    <Content Include="DTOs\CancellationDTOs\ReviewCancellationRequestDTO.cs" />
+    <Content Include="DTOs\CancellationDTOs\ReviewCancellationResponseDTO.cs" />
+    <Content Include="DTOs\CancellationDTOs\UpdateRefundStatusRequestDTO.cs" />
+    <Content Include="DTOs\CancellationDTOs\UpdateRefundStatusResponseDTO.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.2" />
-    <PackageReference Include="Microsoft.Extensions.Localization" Version="8.0.8" />
-    <PackageReference Include="Serilog.AspNetCore" Version="8.0.2" />
-    <PackageReference Include="Serilog.Settings.Configuration" Version="8.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Localization" Version="8.0.10" />
+    <PackageReference Include="Serilog.AspNetCore" Version="8.0.3" />
+    <PackageReference Include="Serilog.Settings.Configuration" Version="8.0.4" />
     <PackageReference Include="Serilog.Sinks.File" Version="6.0.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.9.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="DTOs\PaymentDTOs\" />
     <Folder Include="Views\" />
+    <Folder Include="wwwroot\src\" />
   </ItemGroup>
 
 </Project>

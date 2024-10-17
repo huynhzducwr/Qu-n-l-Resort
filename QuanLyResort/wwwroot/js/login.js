@@ -3,7 +3,7 @@
     const signupBtn = document.getElementById("signup-btn");
     const loginForm = document.getElementById("login-form");
     const signupForm = document.getElementById("signup-form");
-    const formSlider = document.querySelector(".form-slider");
+
 
     loginBtn.addEventListener("click", function () {
         // Switch to Login
@@ -28,7 +28,6 @@
     });
 });
 
-
 // Xử lý gửi biểu mẫu đăng nhập
 document.getElementById('login-form').addEventListener('submit', async (event) => {
     event.preventDefault();
@@ -36,41 +35,58 @@ document.getElementById('login-form').addEventListener('submit', async (event) =
     const password = document.getElementById('password').value;
 
     try {
-        const response = await fetch('https://localhost:44342/api/User/Login', {
+        const response = await fetch('https://localhost:44326/api/User/Login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({ email: email, password: password })
         });
+
         const data = await response.json();
-        if (data.isCreated) {
-            alert('Đăng nhập thành công');
-        } else {
-            alert('Đăng nhập thất bại: ' + data.message);
+        console.log('Response data:', data);
+        if (data.password != password) {
+            alert('Đăng nhập thất bại: ' + data.message); // In toàn bộ dữ liệu phản hồi
         }
+
+        if (data.data.isLogin) {
+
+            localStorage.setItem('isLoggedIn', true);
+            localStorage.setItem('userInfo', JSON.stringify(data.data));
+
+
+            alert('Đăng nhập thành công: ' + data.message);
+            window.location.href = '/home';
+        }
+
     } catch (error) {
         console.error('Lỗi:', error);
     }
 });
 
+
+
+
 // Xử lý gửi biểu mẫu đăng ký
 document.getElementById('signup-form').addEventListener('submit', async (event) => {
     event.preventDefault(); // Ngăn chặn hành vi mặc định của form
+    const firstname = document.getElementById('username-signup').value;
+    const lastname = document.getElementById('lastname-signup').value;
     const email = document.getElementById('email-signup').value;
     const password = document.getElementById('password-signup').value;
 
     try {
-        const response = await fetch('https://localhost:44342/api/User/AddUser', {
+        const response = await fetch('https://localhost:44326/api/User/RegisterUser', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ email: email, password: password })
+            body: JSON.stringify({ firstname: firstname, lastname: lastname, email: email, password: password })
         });
 
+
         const data = await response.json();
-        if (data.isCreated) {
+        if (data.data.isCreated) {
             alert('Tạo tài khoản thành công');
             // Có thể chuyển hướng đến trang đăng nhập hoặc trang khác
         } else {

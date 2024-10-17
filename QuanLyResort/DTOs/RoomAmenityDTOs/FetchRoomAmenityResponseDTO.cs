@@ -2,8 +2,8 @@
 {
     public class FetchRoomAmenityResponseDTO
     {
-        public int RoomTypeID { get; set; }
-        public string TypeName { get; set; }
+        public int RoomID { get; set; }
+        public string RoomNumber { get; set; }
         public string Description { get; set; }
         public string AccessibilityFeatures { get; set; }
         public bool IsActive { get; set; }

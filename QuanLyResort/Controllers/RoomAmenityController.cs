@@ -20,7 +20,7 @@ namespace QuanLyResort.Controllers
             _logger = logger;
         }
 
-        [HttpGet("FetchAmenitiesByRoomTypeId/{roomTypeId}")]
+        [HttpGet("FetchAmenitiesByRoomId/{roomTypeId}")]
         public async Task<APIResponse<List<AmenityResponseDTO>>> FetchAmenitiesByRoomTypeId(int roomTypeId)
         {
             try
@@ -28,7 +28,7 @@ namespace QuanLyResort.Controllers
                 var amenities = await _roomAmenityRepository.FetchRoomAmenitiesByRoomTypeIdAsync(roomTypeId);
                 if (amenities != null && amenities.Count > 0)
                 {
-                    return new APIResponse<List<AmenityResponseDTO>>(amenities, "Fetch Amenities By Room Type Id Successfully.");
+                    return new APIResponse<List<AmenityResponseDTO>>(amenities, "Fetch Amenities By Room Id Successfully.");
                 }
 
                 return new APIResponse<List<AmenityResponseDTO>>(HttpStatusCode.BadRequest, "No Record Found");
@@ -151,7 +151,7 @@ namespace QuanLyResort.Controllers
             }
         }
 
-        [HttpPost("DeleteAllRoomAmenitiesByRoomTypeID/{roomTypeId}")]
+        [HttpPost("DeleteAllRoomAmenitiesByRoomID/{roomId}")]
         public async Task<APIResponse<RoomAmenityResponseDTO>> DeleteAllRoomAmenitiesByRoomTypeID(int roomTypeId)
         {
             try

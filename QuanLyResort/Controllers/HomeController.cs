@@ -9,7 +9,7 @@ namespace QuanLyResort.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            return PhysicalFile(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "html", "login.html"), "text/html");
+            return PhysicalFile(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "html", "home.html"), "text/html");
         }
     }
 }

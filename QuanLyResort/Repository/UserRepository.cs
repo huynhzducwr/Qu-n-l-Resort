@@ -10,26 +10,26 @@ namespace QuanLyResort.Repository
     public class UserRepository
     {
         private readonly SqlConnectionFactory _connectionFactory;
-
         public UserRepository(SqlConnectionFactory connectionFactory)
         {
             _connectionFactory = connectionFactory;
         }
 
-        public async Task<CreateUserResponseDTO> AddUserAsync(CreateUserDTO user)
+        public async Task<CreateUserResponseDTO> RegisterUserAsync(CreateUserDTO user)
         {
             CreateUserResponseDTO createUserResponseDTO = new CreateUserResponseDTO();
-
             using var connection = _connectionFactory.CreateConnection();
-            using var command = new SqlCommand("spAddUser", connection)
+            using var command = new SqlCommand("spRegisterUser", connection)
             {
                 CommandType = CommandType.StoredProcedure
             };
 
             command.Parameters.AddWithValue("@Email", user.Email);
-            // Convert password to hash here 
-            command.Parameters.AddWithValue("@PasswordHash", user.Password);
+            string hashedPassword = BCrypt.Net.BCrypt.HashPassword(user.Password);
+            command.Parameters.AddWithValue("@PasswordHash", hashedPassword);
             command.Parameters.AddWithValue("@CreatedBy", "System");
+            command.Parameters.AddWithValue("@firstname", user.FirstName);
+            command.Parameters.AddWithValue("@lastname", user.LastName);
 
             var userIdParam = new SqlParameter("@UserID", SqlDbType.Int)
             {
@@ -39,33 +39,32 @@ namespace QuanLyResort.Repository
             {
                 Direction = ParameterDirection.Output
             };
-
             command.Parameters.Add(userIdParam);
             command.Parameters.Add(errorMessageParam);
 
             await connection.OpenAsync();
             await command.ExecuteNonQueryAsync();
 
-            var UserId = (int)userIdParam.Value;
-
-            if (UserId != -1)
+            var UserID = (int)userIdParam.Value;
+            if (UserID != -1)
             {
-                createUserResponseDTO.UserId = UserId;
+                createUserResponseDTO.UserId = UserID;
                 createUserResponseDTO.IsCreated = true;
-                createUserResponseDTO.Message = "User Created Successfully";
+                createUserResponseDTO.Message = "Dang ki tai khoan thanh cong";
                 return createUserResponseDTO;
             }
 
             var message = errorMessageParam.Value?.ToString();
             createUserResponseDTO.IsCreated = false;
-            createUserResponseDTO.Message = message ?? "An unknown error occurred while creating the user.";
+            createUserResponseDTO.Message = message ?? "Da xay ra loi khi tao tai khoan";
             return createUserResponseDTO;
+
         }
+
 
         public async Task<UserRoleResponseDTO> AssignRoleToUserAsync(UserRoleDTO userRole)
         {
             UserRoleResponseDTO userRoleResponseDTO = new UserRoleResponseDTO();
-
             using var connection = _connectionFactory.CreateConnection();
             using var command = new SqlCommand("spAssignUserRole", connection)
             {
@@ -84,7 +83,6 @@ namespace QuanLyResort.Repository
             await command.ExecuteNonQueryAsync();
 
             var message = errorMessageParam.Value?.ToString();
-
             if (!string.IsNullOrEmpty(message))
             {
                 userRoleResponseDTO.Message = message;
@@ -92,14 +90,14 @@ namespace QuanLyResort.Repository
             }
             else
             {
-                userRoleResponseDTO.Message = "User Role Assigned";
+                userRoleResponseDTO.Message = "Phan quuyen thanh cong";
                 userRoleResponseDTO.IsAssigned = true;
             }
-
             return userRoleResponseDTO;
         }
 
-        public async Task<List<UserResponseDTO>> ListAllUsersAsync(bool? isActive)
+
+        public async Task<List<UserResponseDTO>> ListAllUserAsync(bool? isActive)
         {
             using var connection = _connectionFactory.CreateConnection();
             using var command = new SqlCommand("spListAllUsers", connection)
@@ -107,37 +105,39 @@ namespace QuanLyResort.Repository
                 CommandType = CommandType.StoredProcedure
             };
             command.Parameters.AddWithValue("@IsActive", (object)isActive ?? DBNull.Value);
-
             await connection.OpenAsync();
             using var reader = await command.ExecuteReaderAsync();
             var users = new List<UserResponseDTO>();
-
             while (reader.Read())
             {
                 users.Add(new UserResponseDTO
                 {
                     UserID = reader.GetInt32("UserID"),
                     Email = reader.GetString("Email"),
+                    FirstName = reader.GetString("firstname"),
+                    LastName = reader.GetString("lastname"),
                     IsActive = reader.GetBoolean("IsActive"),
-                    RoleID = reader.GetInt32("RoleID"),
+                    RoleName = reader.GetString("RoleName"),
                     LastLogin = reader.GetValueByColumn<DateTime?>("LastLogin"),
                 });
             }
             return users;
         }
 
-        public async Task<UserResponseDTO> GetUserByIdAsync(int userId)
+        public async Task<UserResponseDTO> GetUserByIDAsync(int userID)
         {
             using var connection = _connectionFactory.CreateConnection();
             using var command = new SqlCommand("spGetUserByID", connection)
             {
                 CommandType = CommandType.StoredProcedure
             };
-            command.Parameters.AddWithValue("@UserID", userId);
-
-            var errorMessageParam = new SqlParameter("@ErrorMessage", SqlDbType.NVarChar, 255) { Direction = ParameterDirection.Output };
+            command.Parameters.AddWithValue("@UserID", userID);
+            var errorMessageParam = new SqlParameter("@ErrorMessage",
+                SqlDbType.NVarChar, 255)
+            {
+                Direction = ParameterDirection.Output
+            };
             command.Parameters.Add(errorMessageParam);
-
             await connection.OpenAsync();
             using var reader = await command.ExecuteReaderAsync();
             if (!reader.Read())
@@ -149,13 +149,17 @@ namespace QuanLyResort.Repository
             {
                 UserID = reader.GetInt32("UserID"),
                 Email = reader.GetString("Email"),
+                FirstName = reader.GetString("firstname"),
+                LastName = reader.GetString("lastname"),
                 IsActive = reader.GetBoolean("IsActive"),
-                RoleID = reader.GetInt32("RoleID"),
+                RoleName = reader.GetString("RoleName"),
                 LastLogin = reader.GetValueByColumn<DateTime?>("LastLogin"),
-            };
 
+            };
             return user;
+
         }
+
 
         public async Task<UpdateUserResponseDTO> UpdateUserAsync(UpdateUserDTO user)
         {
@@ -165,29 +169,32 @@ namespace QuanLyResort.Repository
             };
 
             using var connection = _connectionFactory.CreateConnection();
-            using var command = new SqlCommand("spUpdateUserInformation", connection)
+            using var command = new SqlCommand("spUpdateUser", connection)
             {
                 CommandType = CommandType.StoredProcedure
             };
+
             command.Parameters.AddWithValue("@UserID", user.UserID);
             command.Parameters.AddWithValue("@Email", user.Email);
-            command.Parameters.AddWithValue("@Password", user.Password);
+            command.Parameters.AddWithValue("@firstname", user.FirstName);
+            command.Parameters.AddWithValue("@lastname", user.LastName);
+            string hashedPassword = BCrypt.Net.BCrypt.HashPassword(user.Password);
+            command.Parameters.AddWithValue("@PasswordHash", hashedPassword);
             command.Parameters.AddWithValue("@ModifiedBy", "System");
+
 
             var errorMessageParam = new SqlParameter("@ErrorMessage", SqlDbType.NVarChar, 255)
             {
                 Direction = ParameterDirection.Output
             };
             command.Parameters.Add(errorMessageParam);
-
             await connection.OpenAsync();
             await command.ExecuteNonQueryAsync();
 
             var message = errorMessageParam.Value?.ToString();
-
             if (string.IsNullOrEmpty(message))
             {
-                updateUserResponseDTO.Message = "User Information Updated.";
+                updateUserResponseDTO.Message = "Cap nhat thong tin user thanh cong";
                 updateUserResponseDTO.IsUpdated = true;
             }
             else
@@ -195,32 +202,30 @@ namespace QuanLyResort.Repository
                 updateUserResponseDTO.Message = message;
                 updateUserResponseDTO.IsUpdated = false;
             }
-
             return updateUserResponseDTO;
         }
 
-        public async Task<DeleteUserResponseDTO> DeleteUserAsync(int userId)
+
+        public async Task<DeleteUserResponseDTO> DeleteUserAsync(int userID)
         {
             DeleteUserResponseDTO deleteUserResponseDTO = new DeleteUserResponseDTO();
             using var connection = _connectionFactory.CreateConnection();
-            using var command = new SqlCommand("spToggleUserActive", connection)
+            using var command = new SqlCommand("spToggleActive", connection)
             {
                 CommandType = CommandType.StoredProcedure
             };
-            command.Parameters.AddWithValue("@UserID", userId);
-            command.Parameters.AddWithValue("@IsActive", false);
+            command.Parameters.AddWithValue("@UserID", userID);
+            command.Parameters.AddWithValue("@isActive", false);
 
             var errorMessageParam = new SqlParameter("@ErrorMessage", SqlDbType.NVarChar, 255)
             {
                 Direction = ParameterDirection.Output
             };
             command.Parameters.Add(errorMessageParam);
-
             await connection.OpenAsync();
             await command.ExecuteNonQueryAsync();
 
             var message = errorMessageParam.Value?.ToString();
-
             if (!string.IsNullOrEmpty(message))
             {
                 deleteUserResponseDTO.Message = message;
@@ -228,38 +233,11 @@ namespace QuanLyResort.Repository
             }
             else
             {
-                deleteUserResponseDTO.Message = "User Deleted.";
+                deleteUserResponseDTO.Message = "Xoa tai khoan thanh cong";
                 deleteUserResponseDTO.IsDeleted = true;
             }
-
             return deleteUserResponseDTO;
         }
-
-       
-        public async Task<UserResponseDTO> GetUserByEmailAsync(string email)
-        {
-            using var connection = _connectionFactory.CreateConnection();
-            var query = "SELECT * FROM Users WHERE Email = @Email";
-            using var command = new SqlCommand(query, connection);
-            command.Parameters.AddWithValue("@Email", email);
-
-            await connection.OpenAsync();
-            using var reader = await command.ExecuteReaderAsync();
-            if (await reader.ReadAsync())
-            {
-                return new UserResponseDTO
-                {
-                    UserID = reader.GetInt32(0),
-                    Email = reader.GetString(1),
-                    // Các thuộc tính khác của User
-                };
-            }
-
-            return null;
-        }
-
-
-
 
         public async Task<LoginUserResponseDTO> LoginUserAsync(LoginUserDTO login)
         {
@@ -272,53 +250,77 @@ namespace QuanLyResort.Repository
             };
 
             command.Parameters.AddWithValue("@Email", login.Email);
-            command.Parameters.AddWithValue("@PasswordHash", login.Password); // Ensure password is hashed
+
+            var passwordHashParam = new SqlParameter("@PasswordHash", SqlDbType.NVarChar, 255)
+            {
+                Direction = ParameterDirection.Output
+            };
 
             var userIdParam = new SqlParameter("@UserID", SqlDbType.Int)
             {
                 Direction = ParameterDirection.Output
             };
-            var errorMessageParam = new SqlParameter("@ErrorMessage", SqlDbType.NVarChar, 255)
+
+            var errorMessage = new SqlParameter("@ErrorMessage", SqlDbType.NVarChar, 255)
             {
                 Direction = ParameterDirection.Output
             };
 
             command.Parameters.Add(userIdParam);
-            command.Parameters.Add(errorMessageParam);
+            command.Parameters.Add(errorMessage);
+            command.Parameters.Add(passwordHashParam);
 
             await connection.OpenAsync();
             await command.ExecuteNonQueryAsync();
 
             var success = userIdParam.Value != DBNull.Value && (int)userIdParam.Value > 0;
-
             if (success)
             {
-                var userId = Convert.ToInt32(userIdParam.Value);
-                userLoginResponseDTO.UserId = userId;
-                userLoginResponseDTO.IsLogin = true;
-                userLoginResponseDTO.Message = "Login Successful";
-                return userLoginResponseDTO;
+                string hashedPasswordFromDb = passwordHashParam.Value.ToString();
+                bool isPasswordCorrect = BCrypt.Net.BCrypt.Verify(login.Password, hashedPasswordFromDb);
+
+                if (isPasswordCorrect)
+                {
+                    var userID = Convert.ToInt32(userIdParam.Value);
+                    userLoginResponseDTO.UserId = userID;
+                    userLoginResponseDTO.IsLogin = true;
+                    userLoginResponseDTO.Message = "Login Successful";
+                    return userLoginResponseDTO;
+                }
+                else
+                {
+                    userLoginResponseDTO.IsLogin = false;
+                    userLoginResponseDTO.Message = "Thong tin khong hop le";
+                    return userLoginResponseDTO;
+                }
+
+
             }
 
-            var message = errorMessageParam.Value?.ToString();
+            var message = errorMessage.Value?.ToString();
             userLoginResponseDTO.IsLogin = false;
             userLoginResponseDTO.Message = message;
             return userLoginResponseDTO;
+
         }
 
         public async Task<(bool Success, string Message)> ToggleUserActiveAsync(int userId, bool isActive)
         {
             using var connection = _connectionFactory.CreateConnection();
-            using var command = new SqlCommand("spToggleUserActive", connection)
+            using var command = new SqlCommand("spToggleActive", connection)
             {
                 CommandType = CommandType.StoredProcedure
             };
+
             command.Parameters.AddWithValue("@UserID", userId);
-            command.Parameters.AddWithValue("@IsActive", isActive);
+            command.Parameters.AddWithValue("@isActive", isActive);
 
-            var errorMessageParam = new SqlParameter("@ErrorMessage", SqlDbType.NVarChar, 255) { Direction = ParameterDirection.Output };
+            var errorMessageParam = new SqlParameter("@ErrorMessage", SqlDbType.NVarChar, 255)
+            {
+                Direction = ParameterDirection.Output
+            };
+
             command.Parameters.Add(errorMessageParam);
-
             await connection.OpenAsync();
             await command.ExecuteNonQueryAsync();
 
@@ -327,5 +329,27 @@ namespace QuanLyResort.Repository
 
             return (success, message);
         }
+
+        public async Task<IEnumerable<RoleDTO>> GetRolesAsync()
+        {
+            var roles = new List<RoleDTO>();
+
+            using var connection = _connectionFactory.CreateConnection();
+            var command = new SqlCommand("spGetUserRoles", connection); // Thay đổi tên bảng nếu cần
+
+            await connection.OpenAsync();
+            using var reader = await command.ExecuteReaderAsync();
+            while (await reader.ReadAsync())
+            {
+                roles.Add(new RoleDTO
+                {
+                    RoleID = reader.GetInt32(0),
+                    RoleName = reader.GetString(1)
+                });
+            }
+
+            return roles;
+        }
+
     }
 }

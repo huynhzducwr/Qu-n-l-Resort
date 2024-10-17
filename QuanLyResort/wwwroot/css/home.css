@@ -1,0 +1,512 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Lexend Deca", system-ui;
+    font-weight: 250;
+}
+
+.information {
+    display: flex;
+    background-color: rgb(80, 57, 23);
+    height: auto;
+    position: relative;
+    z-index: 2;
+    background-color: rgb(80, 57, 23);
+}
+
+.address {
+    width: 70%;
+    text-align: center;
+    color: rgb(225, 177, 114);
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.icon {
+    width: 30%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+    .icon i {
+        font-size: 24px; /* Tăng kích thước của các icon */
+        color: rgb(225, 177, 114);
+    }
+
+        .icon i:hover {
+            cursor: pointer;
+        }
+
+.top-nav {
+    display: flex;
+    background-color: rgba(75, 65, 58, 0.8);
+    position: absolute;
+    width: 100%;
+    z-index: 2;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.logo {
+    width: 40%;
+    padding-top: 10px;
+    height: auto;
+    text-align: center;
+}
+
+.text-logo {
+    font-weight: 400;
+    color: white;
+}
+
+.menu {
+    width: 40%;
+    height: auto;
+}
+.linkk {
+    font-weight: 300;
+    font-size: 15px;
+    color: white;
+    text-decoration:none;
+}
+
+.menu-bar {
+    padding-top: 10px;
+    display: flex;
+    list-style: none;
+    text-decoration: none;
+    justify-content: space-around;
+}
+
+.menu-pick {
+    font-weight: 300;
+    font-size: 15px;
+    color: white;
+}
+
+.menu-pick {
+    cursor: pointer;
+}
+
+.book-now {
+    width: 30%;
+    height: auto;
+    text-align: center;
+}
+
+.bookingg {
+    background-color: rgb(186, 133, 54);
+    color: white;
+    padding: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-radius: 5px;
+    border: none;
+    font-size: 20px;
+}
+
+    .bookingg:hover {
+        cursor: pointer;
+    }
+
+
+
+/* Default styles (for desktop and larger screens) */
+
+/* Responsive for tablet (screens between 768px and 1024px) */
+@media screen and (max-width: 1024px) {
+    .information {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .address, .icon {
+        width: 100%;
+    }
+
+    .top-nav {
+        flex-direction: column;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .logo, .menu, .book-now {
+        width: 100%;
+        text-align: center;
+    }
+
+    .menu-bar {
+        justify-content: center;
+    }
+}
+
+/* Responsive for mobile (screens smaller than 768px) */
+@media screen and (max-width: 768px) {
+    .information {
+        flex-direction: column;
+    }
+
+    .address, .icon {
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+        .icon i {
+            font-size: 20px; /* Slightly reduce the icon size for mobile */
+        }
+
+    .top-nav {
+        flex-direction: column;
+    }
+
+    .logo, .menu, .book-now {
+        width: 100%;
+        text-align: center;
+    }
+
+    .menu-bar {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .menu-pick {
+        font-size: 18px;
+        padding: 10px;
+    }
+
+        .menu-pick:hover {
+            cursor: pointer;
+        }
+
+    .bookingg {
+        font-size: 18px;
+        padding: 8px 20px;
+    }
+}
+
+/* Hide the hamburger icon and display menu normally for larger screens */
+.hamburger {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    /* Show hamburger menu and hide default menu */
+    .hamburger {
+        display: block;
+        font-size: 30px;
+        cursor: pointer;
+        color: rgb(225, 177, 114);
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }
+
+    /* Hide the full menu by default */
+    .menu-bar {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        z-index: 10; /* Đảm bảo menu luôn nằm phía trên video */
+        background-color: rgba(106, 84, 69, 0.5); /* Đặt độ trong suốt 50% */
+    }
+
+        /* When the menu is active (after clicking the hamburger), show it */
+        .menu-bar.active {
+            display: flex;
+        }
+
+    .menu-pick {
+        margin: 10px 0;
+        color: rgb(225, 177, 114);
+        font-size: 18px;
+        text-align: center;
+    }
+}
+
+.video-container {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    z-index: -1; /* Đưa video ra phía sau */
+}
+
+    .video-container video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Đảm bảo video bao phủ toàn bộ khu vực mà không bị méo */
+    }
+
+.gioi-thieu {
+    position: relative;
+    z-index: 1;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+}
+
+.title-gioithieu {
+    font-size: 24px;
+    margin-bottom: 15px;
+    font-size: 45px;
+}
+
+.gioi-thieu p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+}
+
+.tieu-chi {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    width: 70%;
+    ;
+    margin-left: auto;
+    margin-right: auto;
+    color: #333;
+}
+
+.tieu-chi1 {
+    width: 25%;
+    border-right: 2px solid black;
+    font-weight: 400;
+}
+
+.tieu-chi2 {
+    width: 25%;
+}
+
+.list-tieuchi1 {
+    list-style: none;
+    text-decoration: none;
+    text-align: left;
+}
+
+.list-tieuchi2 {
+    list-style: none;
+    text-decoration: none;
+    text-align: right;
+}
+
+.listt {
+    font-weight: 300;
+    gap: 10px;
+    padding-bottom: 10px;
+}
+
+
+.amentities {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    flex-wrap: wrap; /* Đảm bảo các ảnh sẽ xuống dòng khi không đủ chỗ */
+    padding: 20px;
+}
+
+.container-img {
+    position: relative; /* Đặt vị trí tương đối cho container để hình ảnh và tiêu đề có thể định vị chính xác */
+    flex: 1 1 calc(25% - 20px); /* Chia đều không gian cho 4 ảnh trên màn hình lớn */
+    margin: 10px;
+    max-width: 400px;
+}
+
+    .container-img:hover {
+        cursor: pointer;
+    }
+
+    .container-img img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+.amentities-title {
+    position: absolute;
+    bottom: 0; /* Đặt tiêu đề nằm dưới cùng của hình ảnh */
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.6); /* Lớp phủ đen với độ mờ 60% */
+    padding: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+/* Responsive cho tablet */
+@media screen and (max-width: 1024px) {
+    .container-img {
+        flex: 1 1 calc(33.33% - 20px); /* Hiển thị 3 ảnh mỗi hàng trên tablet */
+    }
+}
+
+/* Responsive cho mobile */
+@media screen and (max-width: 768px) {
+    .container-img {
+        flex: 1 1 calc(50% - 20px); /* Hiển thị 2 ảnh mỗi hàng trên mobile */
+    }
+}
+
+/* Responsive cho màn hình rất nhỏ */
+@media screen and (max-width: 480px) {
+    .container-img {
+        flex: 1 1 100%; /* Hiển thị 1 ảnh mỗi hàng */
+    }
+}
+
+
+.rooms {
+    display: flex;
+    flex-wrap: wrap; /* Cho phép các hình ảnh xuống dòng */
+    justify-content: space-between; /* Giữa các hình ảnh */
+    padding: 20px; /* Khoảng cách bên trong */
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.container-img1 {
+    flex: 1 1 calc(30% - 20px); /* Mỗi hình chiếm khoảng 30% chiều rộng */
+    margin: 10px; /* Khoảng cách giữa các hình */
+    position: relative; /* Đặt vị trí tương đối cho tiêu đề và các phần tử con */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Đổ bóng cho hình ảnh */
+    border-radius: 10px; /* Bo tròn góc cho hình ảnh */
+    max-width: 300px;
+    overflow: hidden; /* Ẩn phần nội dung vượt ra ngoài */
+}
+
+    .container-img1:hover {
+        cursor: pointer;
+    }
+
+    .container-img1 img {
+        width: 100%; /* Chiều rộng ảnh 100% để vừa với container */
+        height: auto; /* Tự động điều chỉnh chiều cao */
+        border-radius: 10px; /* Bo tròn góc cho hình ảnh */
+        height: 250px;
+    }
+
+.room-title1 {
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: rgb(143, 95, 51);
+    padding: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.description {
+    margin: 10px 0; /* Khoảng cách cho mô tả */
+    text-align: center; /* Căn giữa mô tả */
+}
+
+.price {
+    display: block; /* Hiển thị giá trong dòng riêng */
+    text-align: center; /* Căn giữa giá */
+    font-size: 16px; /* Kích thước chữ cho giá */
+    font-weight: bold; /* Đậm cho giá */
+    color: #333; /* Màu sắc chữ cho giá */
+}
+
+/* Responsive cho tablet */
+@media screen and (max-width: 1024px) {
+    .container-img {
+        flex: 1 1 calc(50% - 20px); /* Hiển thị 2 ảnh mỗi hàng trên tablet */
+    }
+}
+
+
+.foot {
+    display: flex;
+    flex-wrap: wrap; /* Cho phép phần tử xuống dòng khi không đủ không gian */
+    justify-content: center; /* Giữa các phần tử */
+    background-color: rgb(80, 57, 23); /* Màu nền */
+    color: rgb(225, 177, 114); /* Màu chữ */
+    padding: 20px; /* Khoảng cách bên trong */
+}
+
+.about-us {
+    width: 30%; /* Chiều rộng cho phần About Us */
+    text-align: left; /* Căn trái cho nội dung */
+}
+
+.UserLink {
+    width: 30%; /* Chiều rộng cho phần UserLink */
+}
+
+.link {
+    list-style: none; /* Bỏ dấu đầu dòng */
+    padding: 0; /* Bỏ padding */
+}
+
+.link-click {
+    color: white; /* Màu chữ cho các liên kết */
+    margin: 5px 0; /* Khoảng cách giữa các liên kết */
+    cursor: pointer; /* Thay đổi con trỏ khi di chuột qua */
+    font-weight: 400;
+}
+
+    .link-click:hover {
+        text-decoration: underline; /* Gạch chân khi hover */
+    }
+
+.get-intouch {
+    width: 30%; /* Chiều rộng cho phần Get in Touch */
+    text-align: left; /* Căn trái cho nội dung */
+}
+
+/* Responsive cho mobile */
+@media screen and (max-width: 768px) {
+    .foot {
+        flex-direction: column; /* Đặt tất cả phần tử xuống hàng trên thiết bị di động */
+        align-items: center; /* Căn giữa */
+    }
+
+    .about-us, .UserLink, .get-intouch {
+        width: 100%; /* Chiều rộng 100% trên thiết bị di động */
+        text-align: center; /* Căn giữa cho tất cả nội dung */
+    }
+}
+
+.container-img img {
+    width: 100%; /* Chiều rộng ảnh 100% để vừa với container */
+    height: auto; /* Tự động điều chỉnh chiều cao */
+    border-radius: 10px; /* Bo tròn góc cho hình ảnh */
+    height: 450px;
+    transition: transform 0.3s ease-in-out; /* Tạo hiệu ứng mượt mà */
+}
+
+.container-img:hover img {
+    transform: scale(1.1); /* Zoom hình lên 10% khi di chuột */
+}
+
+.container-img1 img {
+    width: 100%; /* Chiều rộng ảnh 100% để vừa với container */
+    height: auto; /* Tự động điều chỉnh chiều cao */
+    border-radius: 10px; /* Bo tròn góc cho hình ảnh */
+    height: 250px;
+    transition: transform 0.3s ease-in-out; /* Tạo hiệu ứng mượt mà */
+}
+
+.container-img1:hover img {
+    transform: scale(1.1); /* Zoom hình lên 10% khi di chuột */
+}

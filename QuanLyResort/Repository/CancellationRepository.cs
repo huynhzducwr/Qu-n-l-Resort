@@ -1,5 +1,4 @@
-﻿
-using Microsoft.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
 using QuanLyResort.Connection;
 using QuanLyResort.DTOs.CancellationDTOs;
 using System.Data;
@@ -200,7 +199,8 @@ namespace QuanLyResort.Repository
                             UserID = reader.GetInt32(reader.GetOrdinal("UserID")),
                             CancellationType = reader.GetString(reader.GetOrdinal("CancellationType")),
                             RequestedOn = reader.GetDateTime(reader.GetOrdinal("RequestedOn")),
-                            Status = reader.GetString(reader.GetOrdinal("Status"))
+                            Status = reader.GetString(reader.GetOrdinal("Status")),
+                            CancellationReason = reader.GetString(reader.GetOrdinal("CancellationReason"))
                         });
                     }
                 }

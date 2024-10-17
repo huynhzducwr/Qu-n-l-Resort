@@ -27,6 +27,8 @@ namespace QuanLyResort.DTOs.RoomDTOs
         [Required]
         [RegularExpression("(Available|Under Maintenance|Occupied)", ErrorMessage = "Status must be 'Available', 'Under Maintenance', or 'Occupied'.")]
         public string Status { get; set; }
+        [Required]
+        public int People { get; set; }
 
         [Required]
         public bool IsActive { get; set; }

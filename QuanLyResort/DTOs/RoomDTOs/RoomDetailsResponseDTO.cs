@@ -8,6 +8,7 @@
         public decimal Price { get; set; }
         public string BedType { get; set; }
         public string ViewType { get; set; }
+        public int People { get; set; }
         public string Status { get; set; }
         public bool IsActive { get; set; }
     }
