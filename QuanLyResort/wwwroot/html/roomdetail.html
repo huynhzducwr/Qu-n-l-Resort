@@ -1,0 +1,246 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/roomdetails.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="information">
+        <div class="address">
+            <span>Quarter 14,Lavender ward, Da Lat City, LamDong Province, VietNam +84 252 222 0222</span>
+        </div>
+        <div class="icon">
+            <i class="fa-brands fa-facebook"></i>
+            <i class="fa-brands fa-instagram"></i>
+            <i class="fa-brands fa-youtube"></i>
+        </div>
+    </div>
+
+    <div class="top-nav">
+        <div class="logo">
+            <span class="text-logo">Welcome to Lavender Resort</span>
+        </div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <i class="fa fa-bars"></i> <!-- Hamburger icon -->
+        </div>
+        <div class="menu">
+            <ul class="menu-bar" id="menuBar">
+                <li class="menu-pick">HOME</li>
+                <li class="menu-pick">ROOMS</li>
+                <li class="menu-pick">SERVICES</li>
+                <li class="menu-pick">PACKAGES</li>
+                <li class="menu-pick">GALLERY</li>
+                <li class="menu-pick">ABOUT US</li>
+                <li class="menu-pick">CONTACT US</li>
+            </ul>
+        </div>
+        <script>
+            function toggleMenu() {
+                var menu = document.getElementById('menuBar');
+                menu.classList.toggle('active');
+            }
+        </script>
+
+        <div class="book-now">
+            <button class="bookingg">BOOK NOW</button>
+        </div>
+    </div>
+    <div class="background-container">
+        <img src="/src/home_3.png" alt="Room Image">
+        <div class="overlay"></div>
+    </div>
+    <div class="Room-titlee">
+        <P class="titlee">OUR ROOMS</P>
+    </div>
+
+
+
+        <div class="container">
+            <!-- Back link -->
+            <!-- Left Side: Room details and image -->
+            <div class="room-details">
+                <!-- Room header section with title and price -->
+                <a href="#" class="back-link">← Muine Bay Rooms</a>
+                <div class="room-header">
+                    <h1 id="roomtypee" style="font-size:30px">Superi1zczor</h1> <!-- fetch room type-->
+                    <div class="price-section">
+                        <div class="price">$136</div>         <!-- price-->
+                        <p>FROM / PER NIGHT</p>
+                    </div>
+                </div>
+                <img id="main-image" src="../src/deluxe_doube_1.png" class="large-image">  <!--image-->
+                <div class="scroll">
+           
+                    <div class="thumbnail-container">
+                        <img class="lengthh" src="../src/deluxe_twin_1.png" onclick="changeMainImage(this)"> <!--image-->
+                        <img class="lengthh" src="../src/superior_1.png" onclick="changeMainImage(this)"><!--image-->
+                        <img class="lengthh" src="../src/wedding_1.png" onclick="changeMainImage(this)"><!--image-->
+                        <img class="lengthh" src="../src/excursion_1.png" onclick="changeMainImage(this)"><!--image-->
+                        <img class="lengthh" src="../src/wedding_1.png" onclick="changeMainImage(this)"><!--image-->
+                    </div>
+                </div>
+                <script>
+                    function changeMainImage(thumbnail) {
+                        document.getElementById('main-image').src = thumbnail.src;
+                    }
+                </script>
+
+
+            </div>
+
+            <!-- Right Side: Sidebar with room options -->
+            <div class="sidebar">
+                <button class="booknow" onclick="goToBooking()">BOOK NOW</button>
+                <script>
+                    function goToBooking() {
+                        window.location.href = 'booknow.html';
+                    }
+                </script>
+                <h2>Muine Bay Rooms</h2>
+                <ul class="room-types">  <!--fetch roomtype-->
+                    <li><a href="#">Superiwor</a></li>
+                    <li><a href="#">Deluxe Double</a></li>
+                    <li><a href="#">Deluxe Twin</a></li>
+                    <li><a href="#">Ocean Panorama</a></li>
+                    <li><a href="#">Family Suite</a></li>
+                    <li><a href="#">Bungalow</a></li>
+                </ul>
+            </div>
+
+        </div>
+        <div class="amenities-section">  <!--fetch room by iD-->
+            <h2>Amenities</h2>
+            <div class="amenities-grid">
+                <div class="amenity-item">
+                    <i class="fas fa-bed"></i>
+                    <p><strong>Bed</strong><br>
+                    1 DBL or 2 SGL</p>
+                </div>
+                <div class="amenity-item">
+                    <i class="fas fa-users"></i>
+                    <p><strong>People</strong><br>2</p>
+                </div>
+                <div class="amenity-item">
+                    <i class="fas fa-expand"></i>
+                    <p><strong>Room Size</strong><br>38 Sqm</p>
+                </div>
+                <div class="amenity-item">
+                    <i class="fas fa-eye"></i>
+                    <p><strong>View</strong><br>Garden</p>
+                </div>
+                <div class="amenity-item">
+                    <i class="fas fa-wifi"></i>
+                    <p><strong>Wifi</strong><br>Yes</p>
+                </div>
+                <div class="amenity-item">
+                    <i class="fas fa-coffee"></i>
+                    <p><strong>Breakfast</strong><br>Yes</p>
+                </div>
+                <div class="amenity-item">
+                    <i class="fas fa-tv"></i>
+                    <p><strong>Cable TV</strong><br>Yes</p>
+                </div>
+                <div class="amenity-item">
+                    <i class="fas fa-car"></i>
+                    <p><strong>Transit Car</strong><br>Yes</p>
+                </div>
+                <div class="amenity-item">
+                    <i class="fas fa-bath"></i>
+                    <p><strong>Bathtub</strong><br>No</p>
+                </div>
+                <div class="amenity-item">
+                    <i class="fas fa-paw"></i>
+                    <p><strong>Pets Allowed</strong><br>No</p>
+                </div>
+                <div class="amenity-item">
+                    <i class="fas fa-concierge-bell"></i>
+                    <p><strong>Room Service</strong><br>Yes</p>
+                </div>
+                <div class="amenity-item">
+                    <i class="fas fa-iron"></i>
+                    <p><strong>Iron</strong><br>No</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Description Section -->
+        <div class="description-section">
+            <p style="font-weight: 170; font-size: 25px;">Description</p>
+            <p style="font-weight: 400; font-size: 15px;">Superior rooms are all located on the lower floors. Our 54 rooms with its size of 38sqm were harmoniously designed following modern, minimal style and fully set up with amenities along with a tropical garden view.</p>
+            <p style="font-weight: 400; font-size: 15px;">There is nothing more interesting than immersing yourself in windy space together with overlooking our fresh green grass and sunny sky on your room’s balcony.</p>
+            <p style="font-weight: 400; font-size: 15px;">360 degree image: <a href="https://my.matterport.com/show/?m=82AGw1nhUaG" target="_blank">https://my.matterport.com/show/?m=82AGw1nhUaG</a></p>
+        </div>
+
+        <div class="additional-offers-section">
+            <p style="font-weight: 170; font-size: 25px; margin-bottom: 30px;">Additional Offers</p>
+            <ul>
+                <li style="font-weight: 400; font-size: 15px;"><strong>Food & Beverage:</strong> VND 350,000 / lunch or dinner / guest</li>
+                <li style="font-weight: 400; font-size: 15px;"><strong>Excursion:</strong> VND 960,000 / tour / 2-4 guests</li>
+                <li style="font-weight: 400; font-size: 15px;"><strong>Transfer Service:</strong> VND 2,850,000 / trip / seven-seater</li>
+            </ul>
+        </div>
+
+        <div class="discount-section">
+            <h2>Discount</h2>
+            <p>✔️ Contact <a href="tel:+842839209848">+84 28 3920 9848</a> or <a href="#">Facebook</a> to get discount.</p>
+            <p>✔️ Discount from 5-15% for loyal customers.</p>
+        </div>
+
+        <div class="child-policy-section">
+            <h2>Child Policy</h2>
+            <ul>
+                <li>✔️ Children 0-5 years old: free. Maximum 2 children.</li>
+                <li>✔️ Children 6-10 years old: surcharge 200,000 VND / child / night. Maximum of 1 child.</li>
+                <li>✔️ Children 11 years old and older: surcharge as adults. Use an extra bed: 700,000 VND / extra bed / night. Maximum 1 adult.</li>
+            </ul>
+        </div>
+
+
+        <div class="foot">
+            <div class="about-us">
+                <p style="color:white;font-weight: 400; padding-bottom: 30px;">About Us</p>
+                <p style="padding-bottom: 20px;">
+                    An ideal holiday destination for those who would <br>
+                    like to hide away from urban life.
+                </p>
+                <p>
+                    An ideal holiday destination for those who would <br>
+                    like to hide away from urban life.
+                </p>
+            </div>
+            <div class="UserLink">
+                <p style="color:white;font-weight: 400; padding-bottom: 30px;">Useful Links</p>
+                <ul class="link">
+                    <li class="link-click">Home</li>
+                    <li class="link-click">Rooms</li>
+                    <li class="link-click">Services</li>
+                    <li class="link-click">Packages</li>
+                    <li class="link-click">Gallery</li>
+                    <li class="link-click">About us</li>
+                    <li class="link-click">Contact us</li>
+                </ul>
+            </div>
+            <div class="get-intouch">
+                <p style="color:white;font-weight: 400; padding-bottom: 30px;">Get In Touch</p>
+                <p>info@lavenderresort@gmail.com</p>
+                <p>Resort: +84 252 222 0222</p>
+                <p>Office: +84 28 3920 9848</p>
+            </div>
+        </div>
+
+
+    <script src="/js/viewroomdetails.js"></script>
+
+
+    </body>
+</html> 

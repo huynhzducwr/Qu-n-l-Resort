@@ -35,7 +35,7 @@ document.getElementById('login-form').addEventListener('submit', async (event) =
     const password = document.getElementById('password').value;
 
     try {
-        const response = await fetch('https://localhost:44326/api/User/Login', {
+        const response = await fetch('/api/User/Login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -45,11 +45,8 @@ document.getElementById('login-form').addEventListener('submit', async (event) =
 
         const data = await response.json();
         console.log('Response data:', data);
-        if (data.password != password) {
-            alert('Đăng nhập thất bại: ' + data.message); // In toàn bộ dữ liệu phản hồi
-        }
 
-        if (data.data.isLogin) {
+        if (data.success) {
 
             localStorage.setItem('isLoggedIn', true);
             localStorage.setItem('userInfo', JSON.stringify(data.data));
@@ -57,6 +54,8 @@ document.getElementById('login-form').addEventListener('submit', async (event) =
 
             alert('Đăng nhập thành công: ' + data.message);
             window.location.href = '/home';
+        } else {
+            alert('Sai tên đăng nhập hoặc mật khẩu');
         }
 
     } catch (error) {
@@ -76,7 +75,7 @@ document.getElementById('signup-form').addEventListener('submit', async (event) 
     const password = document.getElementById('password-signup').value;
 
     try {
-        const response = await fetch('https://localhost:44326/api/User/RegisterUser', {
+        const response = await fetch('/api/User/RegisterUser', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

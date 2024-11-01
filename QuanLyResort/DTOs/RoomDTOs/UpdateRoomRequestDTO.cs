@@ -22,11 +22,47 @@ namespace QuanLyResort.DTOs.RoomDTOs
         [Required]
         [StringLength(50, ErrorMessage = "Bed type must be up to 50 characters long.")]
         public string BedType { get; set; }
+        [Required]
+        [StringLength(50, ErrorMessage = "Bed type must be up to 50 characters long.")]
+        public string RoomSize {  get; set; }
 
         [Required]
         [StringLength(50, ErrorMessage = "View type must be up to 50 characters long.")]
         public string ViewType { get; set; }
 
+        [Required]
+        [StringLength(50, ErrorMessage = "View type must be up to 50 characters long.")]
+        public string Wifi {  get; set; }
+
+        [Required]
+        [StringLength(50, ErrorMessage = "View type must be up to 50 characters long.")]
+        public string Breakfast {  get; set; }
+
+        [Required]
+        [StringLength(50, ErrorMessage = "View type must be up to 50 characters long.")]
+        public string CableTV {  get; set; }
+
+        [Required]
+        [StringLength(50, ErrorMessage = "View type must be up to 50 characters long.")]
+        public string TransitCar { get; set; }
+
+        [Required]
+        [StringLength(50, ErrorMessage = "View type must be up to 50 characters long.")]
+        public string Bathtub {  get; set; }
+
+
+        [Required]
+        [StringLength(50, ErrorMessage = "View type must be up to 50 characters long.")]
+        public string PetsAllowed {  get; set; }
+
+        [Required]
+        [StringLength(50, ErrorMessage = "View type must be up to 50 characters long.")]
+        public string RoomService { get; set; }
+
+
+        [Required]
+        [StringLength(50, ErrorMessage = "View type must be up to 50 characters long.")]
+        public string Iron {  get; set; }
 
         [Required]
         [RegularExpression("(Available|Under Maintenance|Occupied)", ErrorMessage = "Status must be 'Available', 'Under Maintenance', or 'Occupied'.")]

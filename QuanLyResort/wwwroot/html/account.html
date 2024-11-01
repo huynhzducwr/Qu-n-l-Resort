@@ -1,0 +1,133 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/update_account.css">
+    <link rel="stylesheet" href="/css/wishlist.css">
+    <link rel="stylesheet" href="/css/home1.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
+    <title>Lavender Resort</title>
+</head>
+<body>
+
+
+    <div class="information">
+        <div class="address">
+            <span>Quarter 14,Lavender ward, Da Lat City, LamDong Province, VietNam +84 252 222 0222</span>
+        </div>
+        <div class="icon">
+            <i class="fa-brands fa-facebook"></i>
+            <i class="fa-brands fa-instagram"></i>
+            <i class="fa-brands fa-youtube"></i>
+            <a href="/Account">
+                <i class="fa-solid fa-user-graduate"></i>
+            </a>
+
+        </div>
+    </div>
+
+    <div class="top-nav">
+        <div class="logo">
+            <span class="text-logo">Welcome to Lavender Resort</span>
+        </div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <i class="fa fa-bars"></i> <!-- Hamburger icon -->
+        </div>
+        <div class="menu">
+            <ul class="menu-bar" id="menuBar">
+                <li class="menu-pick"><a class="linkk" href="/home">HOME</a></li>
+                <li class="menu-pick"><a class="linkk" href="/room">ROOM</a></li>
+                <li class="menu-pick">SERVICES</li>
+                <li class="menu-pick">PACKAGES</li>
+                <li class="menu-pick">GALLERY</li>
+                <li class="menu-pick">ABOUT US</li>
+                <li class="menu-pick">CONTACT US</li>
+            </ul>
+        </div>
+        <script>
+            function toggleMenu() {
+                var menu = document.getElementById('menuBar');
+                menu.classList.toggle('active');
+            }
+        </script>
+
+        <div class="book-now">
+            <button class="bookingg">BOOK NOW</button>
+        </div>
+    </div>
+
+
+    <div class="z">
+        <div class="titlee">
+            <h1 style="text-align: center;">YOUR LAVENDER ACCOUNT</h1>
+        </div>
+        <div class="formm">
+            <div style="width:100%">
+                <label for="firstname">FirstName</label>
+                <input type="text" id="firstname" placeholder="Enter first name" required>
+            </div>
+            <div style="width:100%">
+                <label for="lastname">LastName</label>
+                <input type="text" id="lastname" placeholder="Enter last name" required>
+            </div>
+            <div style="width:100%">
+                <label for="email-update">Email Address</label>
+                <input type="email" id="email-update" placeholder="Enter email address" required>
+            </div>
+            <div style="width:100%">
+                <label for="password-update">Password</label>
+                <input type="password" id="password-update" placeholder="Enter password" required>
+            </div>
+            <button type="submit" class="update-btn">Update Infor</button>
+            <button class="log_out">Log out</button>
+        </div>
+
+    </div>
+   
+
+
+    <div class="foot">
+        <div class="about-us">
+            <p style="color:white;font-weight: 400; padding-bottom: 30px;">About Us</p>
+            <p style="padding-bottom: 20px;">
+                An ideal holiday destination for those who would <br>
+                like to hide away from urban life.
+            </p>
+            <p>
+                An ideal holiday destination for those who would <br>
+                like to hide away from urban life.
+            </p>
+        </div>
+        <div class="UserLink">
+            <p style="color:white;font-weight: 400; padding-bottom: 30px;">Useful Links</p>
+            <ul class="link">
+                <li class="link-click">Home</li>
+                <li class="link-click">Rooms</li>
+                <li class="link-click">Services</li>
+                <li class="link-click">Packages</li>
+                <li class="link-click">Gallery</li>
+                <li class="link-click">About us</li>
+                <li class="link-click">Contact us</li>
+            </ul>
+        </div>
+        <div class="get-intouch">
+            <p style="color:white;font-weight: 400; padding-bottom: 30px;">Get In Touch</p>
+            <p>info@lavenderresort@gmail.com</p>
+            <p>Resort: +84 252 222 0222</p>
+            <p>Office: +84 28 3920 9848</p>
+        </div>
+    </div>
+
+    <script src="/js/viewInfor.js"></script>
+    <script src="/js/update.js"></script>
+</body>
+</html>

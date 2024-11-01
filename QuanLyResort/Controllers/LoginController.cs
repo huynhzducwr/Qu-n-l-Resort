@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace QuanLyResort.Controllers
 {
-    [Route("Account")]
+    [Route("login")]
     [ApiController]
     public class LoginController : ControllerBase
     {

@@ -171,14 +171,16 @@ function renderRoom(rooms, roomTypes, imageRoom) {
         // Create the HTML for each room
         const roomHTML = `
         <div class="container-img1">
-            <img src="${imageData ? imageData.imageURL : '/src/default-image.png'}" alt="${roomType ? roomType.typeName : 'Room'}">
+     <a href="/roomdetail/${room.roomID}"> <!-- Include roomID in URL -->
+                <img src="${imageData ? imageData.imageURL : '/src/default-image.png'}" alt="${roomType ? roomType.typeName : 'Room'}">
+            </a>
             <p class="room-title1">${roomType ? roomType.typeName : 'Unknown Room Type'}</p>
             <p class="description">${roomType ? roomType.description : 'No description available'}</p>
             <span class="price">$${room.price} From/Per Night</span>
         </div>
         `;
 
-        // Append the room HTML to the container
+
         containerRoom.insertAdjacentHTML('beforeend', roomHTML);
     });
 }

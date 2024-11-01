@@ -29,7 +29,16 @@ namespace QuanLyResort.Repository
             command.Parameters.AddWithValue("@RoomTypeID", request.RoomTypeID);
             command.Parameters.AddWithValue("@Price", request.Price);
             command.Parameters.AddWithValue("@BedType", request.BedType);
+            command.Parameters.AddWithValue("@RoomSize", request.RoomSize);
             command.Parameters.AddWithValue("@ViewType", request.ViewType);
+            command.Parameters.AddWithValue("Wifi", request.Wifi);
+            command.Parameters.AddWithValue("@Breakfast", request.Breakfast);
+            command.Parameters.AddWithValue("CableTV", request.CableTV);
+            command.Parameters.AddWithValue("TransitCar", request.TransitCar);
+            command.Parameters.AddWithValue("Bathtub", request.Bathtub);
+            command.Parameters.AddWithValue("PetsAllowed", request.PetsAllowed);
+            command.Parameters.AddWithValue("RoomService", request.RoomService);
+            command.Parameters.AddWithValue("Iron", request.Iron);
             command.Parameters.AddWithValue("@Status", request.Status);
             command.Parameters.AddWithValue("@People", request.People);
             command.Parameters.AddWithValue("@IsActive", request.IsActive);
@@ -72,7 +81,16 @@ namespace QuanLyResort.Repository
             command.Parameters.AddWithValue("@RoomTypeID", request.RoomTypeID);
             command.Parameters.AddWithValue("@Price", request.Price);
             command.Parameters.AddWithValue("@BedType", request.BedType);
+            command.Parameters.AddWithValue("@RoomSize", request.RoomSize);
             command.Parameters.AddWithValue("@ViewType", request.ViewType);
+            command.Parameters.AddWithValue("Wifi", request.Wifi);
+            command.Parameters.AddWithValue("@Breakfast", request.Breakfast);
+            command.Parameters.AddWithValue("CableTV", request.CableTV);
+            command.Parameters.AddWithValue("TransitCar", request.TransitCar);
+            command.Parameters.AddWithValue("Bathtub", request.Bathtub);
+            command.Parameters.AddWithValue("PetsAllowed", request.PetsAllowed);
+            command.Parameters.AddWithValue("RoomService", request.RoomService);
+            command.Parameters.AddWithValue("Iron", request.Iron);
             command.Parameters.AddWithValue("@Status", request.Status);
             command.Parameters.AddWithValue("@People", request.People);
             command.Parameters.AddWithValue("@IsActive", request.IsActive);
@@ -149,7 +167,16 @@ namespace QuanLyResort.Repository
                         RoomTypeID = reader.GetInt32("RoomTypeID"),
                         Price = reader.GetDecimal("Price"),
                         BedType = reader.GetString("BedType"),
+                        RoomSize = reader.GetString("RoomSize"),
                         ViewType = reader.GetString("ViewType"),
+                        Wifi = reader.GetString("Wifi"),
+                        Breakfast = reader.GetString("Breakfast"),
+                        CableTV = reader.GetString("CableTV"),
+                        TransitCar = reader.GetString("TransitCar"),
+                        Bathtub = reader.GetString("Bathtub"),
+                        PetsAllowed = reader.GetString("PetsAllowed"),
+                        RoomService = reader.GetString("RoomService"),
+                        Iron = reader.GetString("Iron"),
                         Status = reader.GetString("Status"),
                         People = reader.GetInt32("People"),
                         IsActive = reader.GetBoolean("IsActive")
@@ -199,8 +226,17 @@ namespace QuanLyResort.Repository
                         RoomTypeID = reader.GetInt32("RoomTypeID"),
                         Price = reader.GetDecimal("Price"),
                         BedType = reader.GetString("BedType"),
+                        RoomSize = reader.GetString("RoomSize"),
                         ViewType = reader.GetString("ViewType"),
-                         People = reader.GetInt32("People"),
+                        Wifi = reader.GetString("Wifi"),
+                        Breakfast = reader.GetString("Breakfast"),
+                        CableTV = reader.GetString("CableTV"),
+                        TransitCar = reader.GetString("TransitCar"),
+                        Bathtub = reader.GetString("Bathtub"),
+                        PetsAllowed = reader.GetString("PetsAllowed"),
+                        RoomService = reader.GetString("RoomService"),
+                        Iron = reader.GetString("Iron"),
+                        People = reader.GetInt32("People"),
                         Status = reader.GetString("Status"),
                         IsActive = reader.GetBoolean("IsActive")
                     });

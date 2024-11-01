@@ -149,8 +149,8 @@ namespace QuanLyResort.Repository
             {
                 UserID = reader.GetInt32("UserID"),
                 Email = reader.GetString("Email"),
-                FirstName = reader.GetString("firstname"),
-                LastName = reader.GetString("lastname"),
+                FirstName = reader.GetString("Firstname"),
+                LastName = reader.GetString("Lastname"),
                 IsActive = reader.GetBoolean("IsActive"),
                 RoleName = reader.GetString("RoleName"),
                 LastLogin = reader.GetValueByColumn<DateTime?>("LastLogin"),
