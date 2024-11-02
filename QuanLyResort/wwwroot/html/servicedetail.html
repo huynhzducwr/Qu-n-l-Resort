@@ -1,0 +1,163 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/detailservice.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="information">
+        <div class="address">
+            <span>Quarter 14,Lavender ward, Da Lat City, LamDong Province, VietNam +84 252 222 0222</span>
+        </div>
+        <div class="icon">
+            <i class="fa-brands fa-facebook"></i>
+            <i class="fa-brands fa-instagram"></i>
+            <i class="fa-brands fa-youtube"></i>
+        </div>
+    </div>
+
+    <div class="top-nav">
+        <div class="logo">
+            <span class="text-logo">Welcome to Lavender Resort</span>
+        </div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <i class="fa fa-bars"></i> <!-- Hamburger icon -->
+        </div>
+        <div class="menu">
+            <ul class="menu-bar" id="menuBar">
+                <li class="menu-pick">HOME</li>
+                <li class="menu-pick">ROOMS</li>
+                <li class="menu-pick">SERVICES</li>
+                <li class="menu-pick">PACKAGES</li>
+                <li class="menu-pick">GALLERY</li>
+                <li class="menu-pick">ABOUT US</li>
+                <li class="menu-pick">CONTACT US</li>
+            </ul>
+        </div>
+        <script>
+            function toggleMenu() {
+                var menu = document.getElementById('menuBar');
+                menu.classList.toggle('active');
+            }
+        </script>
+
+        <div class="book-now">
+            <button class="bookingg">BOOK NOW</button>
+        </div>
+    </div>
+    <div class="background-container">
+        <img src="/src/home_3.png" alt="Room Image">
+        <div class="overlay"></div>
+    </div>
+    <div class="Room-titlee">
+        <P class="titlee">OUR ROOMS</P>
+    </div>
+
+
+
+        <div class="main-container">
+            <!-- Left Section: Image of Food -->
+            <div class="left-section">
+                <img src="https://www.dropbox.com/s/tw87e7fii8xbej8/cuisine_1.jpg?raw=1" alt="Food Image">
+            </div>
+
+            <!-- Right Section: Hot Services -->
+            <div class="right-section">
+                <h2 class="section-title-main">Hot Services</h2>
+                <ul class="hot-services">
+                    <li><a href="#">CUISINE</a></li>
+                    <li><a href="#">MICE</a></li>
+                    <li><a href="#">WEDDING</a></li>
+                    <li><a href="#">EXCURSION</a></li>
+                    <li><a href="#">SPA</a></li>
+                    <li><a href="#">TRANSFER SERVICE</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- Cuisine Section -->
+        <section class="cuisine-section">
+            <div class="container">
+                <h1 class="section-title">CUISIN1E</h1>
+                <p class="section-description">
+                    Being operated with 3 restaurants in different styles where the loved ones & you can experience the richness of variety cuisine.
+                </p>
+
+                <!-- Restaurant Details -->
+                <div class="restaurant-details">
+                    <div class="restaurant-card">
+
+                    </div>
+
+                    <div class="restaurant-card1">
+               
+                    </div>
+
+                    <div class="restaurant-card2">
+                        
+                    </div>
+                </div>
+                <h2 style="margin-top: 30px;" class="section-subtitle">PHOTOS</h2>
+                <div class="photos-grid">
+                    <img src="https://www.dropbox.com/s/89fpux5nbvm9bns/cuisine_2.jpg?raw=1" alt="Cuisine Photo 1">
+                    <img src="https://www.dropbox.com/s/hyzdzeg2wnubpmw/cuisine_3.jpg?raw=1" alt="Cuisine Photo 2">
+                    <img src="https://www.dropbox.com/s/0ym74vqejy4ffxl/cuisine_4.jpg?raw=1" alt="Cuisine Photo 3">
+                    <img src="https://www.dropbox.com/s/jk33wa63woeng55/cuisine_5.jpg?raw=1" alt="Cuisine Photo 4">
+                    <img src="https://www.dropbox.com/s/hbd4h82r4klpkeg/cuisine_6.jpg?raw=1" alt="Cuisine Photo 5">
+                    <img src="https://www.dropbox.com/s/tt192qr90z5387z/cuisine_7.jpg?raw=1" alt="Cuisine Photo 6">
+                </div>
+            </div>
+        </section>
+
+
+
+
+        <div class="foot">
+            <div class="about-us">
+                <p style="color:white;font-weight: 400; padding-bottom: 30px;">About Us</p>
+                <p style="padding-bottom: 20px;">
+                    An ideal holiday destination for those who would <br>
+                    like to hide away from urban life.
+                </p>
+                <p>
+                    An ideal holiday destination for those who would <br>
+                    like to hide away from urban life.
+                </p>
+            </div>
+            <div class="UserLink">
+                <p style="color:white;font-weight: 400; padding-bottom: 30px;">Useful Links</p>
+                <ul class="link">
+                    <li class="link-click">Home</li>
+                    <li class="link-click">Rooms</li>
+                    <li class="link-click">Services</li>
+                    <li class="link-click">Packages</li>
+                    <li class="link-click">Gallery</li>
+                    <li class="link-click">About us</li>
+                    <li class="link-click">Contact us</li>
+                </ul>
+            </div>
+            <div class="get-intouch">
+                <p style="color:white;font-weight: 400; padding-bottom: 30px;">Get In Touch</p>
+                <p>info@lavenderresort@gmail.com</p>
+                <p>Resort: +84 252 222 0222</p>
+                <p>Office: +84 28 3920 9848</p>
+            </div>
+        </div>
+
+    <script src="/js/viewservicesdetails.js"></script>
+
+
+
+
+
+    </body>
+</html> 

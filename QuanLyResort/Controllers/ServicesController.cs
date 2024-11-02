@@ -37,26 +37,27 @@ namespace QuanLyResort.Controllers
             }
         }
 
-        [HttpGet("GetServicesByID/{ServicesID}")]
-        public async Task<APIResponse<ServicesDTO>> GetServicesById(int RoomTypeID)
+        [HttpGet("GetServiceByID/{id}")]
+        public async Task<APIResponse<ServicesDTO>> GetServiceById(int id)
         {
-            _logger.LogInformation($"Request Received for GetRoomTypeById, RoomTypeID: {RoomTypeID}");
+            _logger.LogInformation($"Đã nhận yêu cầu lấy thông tin dịch vụ theo ID, ServiceID: {id}");
             try
             {
-                var roomType = await _roomTypeRepository.RetrieveServicesByIdAsync(RoomTypeID);
-                if (roomType == null)
+                var service = await _roomTypeRepository.RetrieveServicesByIdAsync(id);
+                if (service == null)
                 {
-                    return new APIResponse<ServicesDTO>(HttpStatusCode.NotFound, "RoomTypeID not found.");
+                    return new APIResponse<ServicesDTO>(HttpStatusCode.NotFound, "Không tìm thấy dịch vụ.");
                 }
 
-                return new APIResponse<ServicesDTO>(roomType, "RoomType fetched successfully.");
+                return new APIResponse<ServicesDTO>(service, "Lấy thông tin dịch vụ thành công.");
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error getting Room Type by ID {RoomTypeID}", RoomTypeID);
-                return new APIResponse<ServicesDTO>(HttpStatusCode.BadRequest, "Error fetching Room Type .", ex.Message);
+                _logger.LogError(ex, "Lỗi khi lấy dịch vụ theo ID {id}", id);
+                return new APIResponse<ServicesDTO>(HttpStatusCode.BadRequest, "Lỗi khi lấy thông tin dịch vụ.", ex.Message);
             }
         }
+
 
         [HttpPost("AddServices")]
         public async Task<APIResponse<CreateServicesResponseDTO>> CreateServices([FromBody] CreateServicesDTO request)
