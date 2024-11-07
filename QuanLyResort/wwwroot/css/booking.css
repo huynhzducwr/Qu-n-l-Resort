@@ -1,0 +1,525 @@
+﻿/* Reset mặc định */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f0f4f8;
+    color: #333;
+}
+
+/* Header */
+header {
+    background-color: rgb(80, 57, 23);
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    font-size: 24px;
+}
+
+    header h1 {
+        margin-bottom: 10px;
+        font-size: 36px;
+        font-weight: bold;
+    }
+
+    header p {
+        font-size: 16px;
+    }
+
+/* Phần chính */
+main {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding: 40px 20px;
+}
+
+/* General styling for room-info */
+.room-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+/* Styling for room-container */
+.room-container {
+    display: flex;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #ffffff;
+}
+
+/* Styling for room-image to occupy 50% */
+.room-image {
+    width: 50%;
+    background-color: #e0e0e0; /* Placeholder color */
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Styling for room-detail to occupy 50% */
+.room-detail {
+    width: 50%;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+/* Title styling */
+.title-room {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* Aligning price and per-night details */
+.room-detail p {
+    margin: 0;
+}
+
+    .room-detail p:nth-child(2) {
+        font-weight: bold;
+        font-size: 1.1rem;
+    }
+
+    .room-detail p:last-child {
+        color: #777;
+        font-size: 0.9rem;
+        font-style: italic;
+    }
+
+/* Display guest and room size info in a single line */
+.room-detail .additional-info {
+    display: flex;
+    gap: 10px;
+    color: #555;
+    font-size: 0.9rem;
+}
+/* Styling for price to align to the right */
+.price {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #555;
+    margin-left: auto; /* Aligns the price to the right */
+}
+
+/* Button styling */
+.select-button {
+    margin-top: 10px;
+    padding: 10px 16px;
+    width: 150px; /* Set fixed width */
+    background-color: #2A398C;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-left: auto;
+    transition: background-color 0.3s ease;
+}
+
+    .select-button:hover {
+        background-color: #3343a2;
+    }
+
+
+
+.resort-info {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    max-width: 1000px;
+    width: 60%;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+.filter-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    background: #fff; /* Background color to ensure visibility */
+    padding: 10px; /* Padding for spacing */
+    position: sticky; /* Make it sticky */
+    top: 0; /* Stick to the top */
+
+    z-index: 1000; /* Ensure it stays above other elements */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for effect */
+    border-radius:2px;
+}
+    .filter-row .dropdown-label,
+    .filter-row .dropdown,
+    .filter-row .search-label,
+    .filter-row .search-input {
+        margin-right: 10px; /* Add spacing between elements */
+    }
+
+
+
+/* Dropdown, input, and label styling */
+.dropdown, .search-input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    width: 130px;
+    text-align: center;
+}
+
+.dropdown-label, .search-label {
+    font-size: 0.9rem;
+    color: #333;
+    margin-right: 5px;
+}
+
+/* Ensure labels and inputs are aligned */
+.dropdown-label, .search-label {
+    display: none; /* Hide labels if not needed */
+}
+
+/* Search button styling */
+.search-btn {
+    padding: 10px 20px;
+    background-color: #797b7b;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    .search-btn:hover {
+        background-color: #0056b3;
+    }
+
+
+
+
+/* Form đặt phòng */
+.booking-form {
+    width: 35%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    position: sticky; /* Make it sticky */
+top:0;
+    z-index: 1000; /* Ensure it stays above other elements */
+}
+
+    .booking-form h2 {
+        font-size: 24px;
+        color: #004d40;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .booking-form label {
+        font-size: 16px;
+        margin-bottom: 10px;
+        display: block;
+        color: #333;
+    }
+
+    .booking-form input,
+    .booking-form select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+        .booking-form input[type="date"] {
+            padding-right: 10px;
+        }
+
+    .booking-form button {
+        width: 100%;
+        background-color: #004d40;
+        color: #fff;
+        padding: 15px;
+        border: none;
+        border-radius: 5px;
+        font-size: 18px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        .booking-form button:hover {
+            background-color: #00332e;
+        }
+
+/* Footer */
+footer {
+    background-color: #004d40;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+    footer p {
+        font-size: 14px;
+    }
+
+/* Responsive cho di động */
+@media (max-width: 768px) {
+    main {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .resort-info,
+    .booking-form {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .booking-form {
+        margin-top: 20px;
+    }
+}
+
+
+
+.room-cart {
+    width: 100%;
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+.cart-container {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+}
+.total-price {
+    padding-top: 10px; /* Add 10px padding at the top */
+    font-weight: bold; /* Optional: make the text bold for emphasis */
+    padding-left:12px;
+}
+.total-price1 {
+    padding-top: 10px; /* Add 10px padding at the top */
+    font-weight: bold; /* Optional: make the text bold for emphasis */
+    padding-left: 12px;
+}
+
+.title-room {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Style for date range */
+.cart-container p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+/* Room details */
+.room-details {
+    font-size: 16px;
+    color: #444;
+    margin-top: 5px;
+}
+
+/* Price and total */
+.price-info {
+    font-size: 16px;
+    font-weight: bold;
+    color: #1a73e8;
+    margin-top: 10px;
+}
+
+
+.price-info1 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #1a73e8;
+    margin-top: 10px;
+}
+
+.tax-info {
+    font-size: 12px;
+    color: #888;
+    font-style: italic;
+    margin-top: 5px;
+    padding-left:13px;
+}
+
+/* Layout adjustments */
+.room-cart .cart-container p,
+.room-details,
+.price-info,
+.tax-info {
+    line-height: 1.6;
+}
+
+/* Responsive styling */
+@media (max-width: 600px) {
+    .room-cart {
+        padding: 15px;
+    }
+
+    .cart-container {
+        padding: 10px;
+    }
+
+    .title-room {
+        font-size: 16px;
+    }
+
+    .price-info {
+        font-size: 14px;
+    }
+}
+
+.delete-order {
+    cursor: pointer; /* Shows a pointer when hovering */
+}
+
+    .delete-order i {
+ 
+        font-size: 20px; /* Adjust size as needed */
+    }
+
+
+
+/* Alert Box Styles */
+.alert {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 20px;
+    background-color: #f44336; /* Red background */
+    color: white; /* White text */
+    border-radius: 5px;
+    z-index: 9999;
+    transition: opacity 0.6s, visibility 0.6s; /* Transition for fade effect */
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Close Button Styles */
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+}
+
+    .closebtn:hover {
+        color: #bbb;
+    }
+
+/* Fade Out Effect */
+.alert.fade-out {
+    opacity: 0;
+    visibility: hidden;
+}
+/* Success Alert Box Styles */
+.success {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 20px;
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text */
+    border-radius: 5px;
+    z-index: 9999;
+    transition: opacity 0.6s, visibility 0.6s; /* Transition for fade effect */
+    opacity: 1;
+    visibility: visible;
+}
+
+    /* Fade Out Effect for Success Alert */
+    .success.fade-out {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+
+
+/* Container for all guest selections in a single row */
+.guest-selection-container {
+    display: flex;
+    gap: 10px; /* Reduce the space between each selection */
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+/* Styling each guest selection section */
+.guest-selection {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-family: Arial, sans-serif;
+}
+
+    /* Styling the label */
+    .guest-selection label {
+        font-weight: bold;
+        font-size: 12px;
+        min-width: 50px;
+        text-align: center;
+        color: #333;
+        margin-top: 9px;
+    }
+
+    /* Styling the input field */
+    .guest-selection input[type="text"] {
+        width: 25px;
+        text-align: center;
+        font-size: 14px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 3px;
+        background-color: #f9f9f9;
+        margin-top:15px;
+    }
+
+    /* Styling the buttons */
+    .guest-selection button {
+        width: 25px; /* Smaller button size */
+        height: 25px;
+        background-color: #fff;
+        color: #333;
+        border: 1px solid #ccc;
+        border-radius: 50%;
+        font-size: 14px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.2s ease;
+    }
+
+        /* Hover effect for buttons */
+        .guest-selection button:hover {
+            background-color: #e6e6e6;
+        }
+

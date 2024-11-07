@@ -100,14 +100,14 @@
 
             <!-- Right Side: Sidebar with room options -->
             <div class="sidebar">
-                <button class="booknow" onclick="goToBooking()">BOOK NOW</button>
-                <script>
-                    function goToBooking() {
-                        window.location.href = 'booknow.html';
-                    }
-                </script>
+                <a href="/html/booking.html" class="booknow-link">
+                    <button class="booknow">BOOK NOW</button>
+                </a>
+
+
                 <h2>Muine Bay Rooms</h2>
-                <ul class="room-types">  <!--fetch roomtype-->
+                <ul class="room-types">
+                    <!--fetch roomtype-->
                     <li><a href="#">Superiwor</a></li>
                     <li><a href="#">Deluxe Double</a></li>
                     <li><a href="#">Deluxe Twin</a></li>

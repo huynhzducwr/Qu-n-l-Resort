@@ -23,5 +23,14 @@ namespace QuanLyResort.DTOs.BookingDTOs
         [FutureDateValidation(ErrorMessage = "Check-out date must be in the future.")]
         [DateGreaterThanValidation("CheckInDate", ErrorMessage = "Check-out date must be after check-in date.")]
         public DateTime CheckOutDate { get; set; }
+
+        [Required]
+        public int Adult {  get; set; }
+
+        [Required]
+        public int Child { get; set; }
+
+        [Required]
+        public int Infant { get; set; }
     }
 }

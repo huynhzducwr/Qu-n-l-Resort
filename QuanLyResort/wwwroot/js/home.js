@@ -160,8 +160,18 @@ function renderRoom(rooms, roomTypes, imageRoom) {
         return;
     }
 
-    // Render rooms along with their corresponding room type and images
+    // Create a map to store a single room for each room type
+    const representativeRooms = new Map();
+
+    // Find a representative room for each room type
     rooms.forEach(room => {
+        if (!representativeRooms.has(room.roomTypeID)) {
+            representativeRooms.set(room.roomTypeID, room);
+        }
+    });
+
+    // Render each representative room along with its corresponding room type and image
+    representativeRooms.forEach(room => {
         // Find the corresponding room type for the room
         const roomType = roomTypes.find(type => type.roomTypeID === room.roomTypeID);
 
@@ -171,7 +181,7 @@ function renderRoom(rooms, roomTypes, imageRoom) {
         // Create the HTML for each room
         const roomHTML = `
         <div class="container-img1">
-     <a href="/roomdetail/${room.roomID}"> <!-- Include roomID in URL -->
+            <a href="/roomdetail/${room.roomID}"> <!-- Include roomID in URL -->
                 <img src="${imageData ? imageData.imageURL : '/src/default-image.png'}" alt="${roomType ? roomType.typeName : 'Room'}">
             </a>
             <p class="room-title1">${roomType ? roomType.typeName : 'Unknown Room Type'}</p>
@@ -180,10 +190,10 @@ function renderRoom(rooms, roomTypes, imageRoom) {
         </div>
         `;
 
-
         containerRoom.insertAdjacentHTML('beforeend', roomHTML);
     });
 }
+
 
 
 document.addEventListener('DOMContentLoaded', () => {

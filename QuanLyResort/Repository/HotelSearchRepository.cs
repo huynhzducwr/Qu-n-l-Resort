@@ -292,7 +292,7 @@ namespace QuanLyResort.Repository
                 command.Parameters.AddWithValue("@MinPrice", (object)criteria.MinPrice ?? DBNull.Value);
                 command.Parameters.AddWithValue("@MaxPrice", (object)criteria.MaxPrice ?? DBNull.Value);
                 command.Parameters.AddWithValue("@RoomTypeName", string.IsNullOrEmpty(criteria.RoomTypeName) ? DBNull.Value : criteria.RoomTypeName);
-                command.Parameters.AddWithValue("@AmenityName", string.IsNullOrEmpty(criteria.AmenityName) ? DBNull.Value : criteria.AmenityName);
+             
                 command.Parameters.AddWithValue("@ViewType", string.IsNullOrEmpty(criteria.ViewType) ? DBNull.Value : criteria.ViewType);
 
                 connection.Open();

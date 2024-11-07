@@ -14,8 +14,6 @@ namespace QuanLyResort.DTOs.HotelSearchDTOs
         [StringLength(50, ErrorMessage = "Room type name length cannot exceed 50 characters.")]
         public string? RoomTypeName { get; set; }
 
-        [StringLength(100, ErrorMessage = "Amenity name length cannot exceed 100 characters.")]
-        public string? AmenityName { get; set; }
 
         [StringLength(50, ErrorMessage = "View type name length cannot exceed 50 characters.")]
         public string? ViewType { get; set; }

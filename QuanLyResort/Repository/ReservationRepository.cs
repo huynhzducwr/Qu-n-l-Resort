@@ -84,6 +84,9 @@ namespace QuanLyResort.Repository
                 command.Parameters.AddWithValue("@UserID", reservation.UserID);
                 command.Parameters.AddWithValue("@CheckInDate", reservation.CheckInDate);
                 command.Parameters.AddWithValue("@CheckOutDate", reservation.CheckOutDate);
+                command.Parameters.AddWithValue("@Adult", reservation.Adult);
+                command.Parameters.AddWithValue("@Child", reservation.Child);
+                command.Parameters.AddWithValue("@Infant", reservation.Infant);
 
 
                 var table = new DataTable();
