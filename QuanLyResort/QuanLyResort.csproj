@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\html\payment.html" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="Controllers\CancellationController.cs" />
     <Content Include="Controllers\ReservationController.cs" />
     <Content Include="DTOs\BookingDTOs\AddGuestsToReservationDTO.cs" />

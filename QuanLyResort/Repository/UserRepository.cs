@@ -114,8 +114,8 @@ namespace QuanLyResort.Repository
                 {
                     UserID = reader.GetInt32("UserID"),
                     Email = reader.GetString("Email"),
-                    FirstName = reader.GetString("firstname"),
-                    LastName = reader.GetString("lastname"),
+                    FirstName = reader.GetString("Firstname"),
+                    LastName = reader.GetString("Lastname"),
                     IsActive = reader.GetBoolean("IsActive"),
                     RoleName = reader.GetString("RoleName"),
                     LastLogin = reader.GetValueByColumn<DateTime?>("LastLogin"),
@@ -176,25 +176,29 @@ namespace QuanLyResort.Repository
 
             command.Parameters.AddWithValue("@UserID", user.UserID);
             command.Parameters.AddWithValue("@Email", user.Email);
-            command.Parameters.AddWithValue("@firstname", user.FirstName);
-            command.Parameters.AddWithValue("@lastname", user.LastName);
+            command.Parameters.AddWithValue("@Firstname", user.FirstName);
+            command.Parameters.AddWithValue("@Lastname", user.LastName);
+
+            // Hash the password before updating
             string hashedPassword = BCrypt.Net.BCrypt.HashPassword(user.Password);
             command.Parameters.AddWithValue("@PasswordHash", hashedPassword);
-            command.Parameters.AddWithValue("@ModifiedBy", "System");
 
-
+            // Output parameter for error message
             var errorMessageParam = new SqlParameter("@ErrorMessage", SqlDbType.NVarChar, 255)
             {
                 Direction = ParameterDirection.Output
             };
             command.Parameters.Add(errorMessageParam);
+
+            // Execute the stored procedure
             await connection.OpenAsync();
             await command.ExecuteNonQueryAsync();
 
+            // Retrieve and check the error message
             var message = errorMessageParam.Value?.ToString();
             if (string.IsNullOrEmpty(message))
             {
-                updateUserResponseDTO.Message = "Cap nhat thong tin user thanh cong";
+                updateUserResponseDTO.Message = "User information updated successfully.";
                 updateUserResponseDTO.IsUpdated = true;
             }
             else
@@ -202,6 +206,7 @@ namespace QuanLyResort.Repository
                 updateUserResponseDTO.Message = message;
                 updateUserResponseDTO.IsUpdated = false;
             }
+
             return updateUserResponseDTO;
         }
 
